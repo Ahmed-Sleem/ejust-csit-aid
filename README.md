@@ -11,3 +11,8 @@ npm run verify
 ```
 
 The intro koi are adapted from Cursor Pond/Nagomi. See `NOTICE` and `LICENSE`.
+
+## Planning
+
+- [Product requirements](docs/PRODUCT_REQUIREMENTS.md)
+- [Implementation and deployment plan](docs/IMPLEMENTATION_AND_DEPLOYMENT_PLAN.md)

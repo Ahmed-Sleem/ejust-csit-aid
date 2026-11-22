@@ -47,3 +47,8 @@
 - Reduced profiles to About, Publications, Projects, and Contact Information.
 - Added a structured Contact Information section containing EJUST email, department, academic role, and field.
 - Updated product requirements and added desktop/mobile browser coverage.
+
+## 2026-11-22 — Implementation and deployment blueprint
+- Added `docs/IMPLEMENTATION_AND_DEPLOYMENT_PLAN.md` covering architecture, accounts, repository structure, schema, constraints, RLS matrix, auth and root bootstrap, trusted functions, storage, frontend modules, secrets, testing, CI, Cloudflare/Neon setup, milestones, backup, rollback, monitoring, launch acceptance, and credential handling.
+- Based the security plan on Neon Data API grants/RLS, Managed Better Auth JWT identity, Data API advisors, branch-scoped function secrets, and Cloudflare Pages deployment controls.
+- Explicitly deferred cloud account creation until local refactor/schema milestones are complete.

@@ -20,3 +20,6 @@
 
 ## 2026-11-22 — Simplified profiles
 - Removed messaging/resume actions and nonessential profile sections; added Contact Information.
+
+## 2026-11-22 — Delivery blueprint
+- Added complete implementation, testing, and deployment plan for Cloudflare Pages + Neon.

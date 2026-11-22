@@ -209,7 +209,7 @@ function route(){const h=location.hash.slice(1),p=P.find(x=>x.id==h),isDirectory
  else{$("#home").style.display="block";if(h&&$("#"+h))setTimeout(()=>$("#"+h).scrollIntoView(),30);else scrollTo(0,0)}
  navState();rv()}
 function navState(){const inside=$("#prof").style.display==="block"||$("#directory").style.display==="block";$("#nav").classList.toggle("show",inside||scrollY>innerHeight*.55||$("#sb").classList.contains("open"))}
-addEventListener("hashchange",route);addEventListener("scroll",()=>{navState();spy()},{passive:true});
+addEventListener("hashchange",route);addEventListener("scroll",()=>{const atIntro=$("#home").style.display!=="none"&&scrollY<=innerHeight*.55;if(atIntro&&$("#sb").classList.contains("open"))closeS();else navState();spy()},{passive:true});
 /* desktop search + immersive mobile layers */
 const sb=$("#sb"),sin=$("#sin"),res=$("#res"),msin=$("#msin"),mres=$("#mres"),mobileMenu=$("#mobile-menu"),mobileSearch=$("#mobile-search");
 function lockMobileLayer(lock){document.body.style.overflow=lock?"hidden":""}
@@ -220,6 +220,8 @@ function openSearch(){if(matchMedia("(max-width:620px)").matches){mobileMenu.cla
 $("#sbtn").onclick=()=>matchMedia("(max-width:620px)").matches?openSearch():sb.classList.contains("open")?closeS():openSearch();
 function q(v){v=v.toLowerCase();const m=[...P.map(p=>[p.n,p.r+" · "+p.f,p.id,(p.n+p.f+p.r).toLowerCase()]),...J.map(j=>[j[0],"Project · "+j[3],"projects",(j[0]+j[1]+j[2]).toLowerCase()])].filter(x=>x[3].includes(v)).slice(0,6),empty=`<p style="padding:12px;color:var(--ink3);font-size:14px">No results</p>`;res.innerHTML=m.length?m.map(x=>`<a href="#${x[2]}" onclick="closeS()">${x[0]}<small>${x[1]}</small></a>`).join(""):empty;mres.innerHTML=m.length?m.map(x=>`<a href="#${x[2]}" onclick="closeMobileLayers()">${x[0]}<small>${x[1]}</small></a>`).join(""):empty;res.classList.add("show")}
 sin.oninput=()=>q(sin.value);msin.oninput=()=>q(msin.value);
+sb.addEventListener("focusout",()=>setTimeout(()=>{if(!sb.contains(document.activeElement))closeS()},120));
+document.addEventListener("pointerdown",event=>{if(sb.classList.contains("open")&&!sb.contains(event.target))closeS()});
 /* auth */
 let su=false;
 function auth(){$("#am").classList.add("show")}function closeM(){$("#am").classList.remove("show")}

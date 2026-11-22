@@ -38,6 +38,20 @@ test('keeps koi limited to the intro and preserves site interactions', async ({ 
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
 });
 
+test('desktop search collapses on blur and floating navigation leaves the intro', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Desktop floating search behavior');
+  await page.goto('/');
+  await page.locator('.top').getByRole('button', { name: 'Search', exact: true }).click();
+  await expect(page.locator('#sb')).toHaveClass(/open/);
+  await page.locator('h1').click({ position: { x: 5, y: 5 } });
+  await expect(page.locator('#sb')).not.toHaveClass(/open/);
+  await expect(page.locator('#nav')).not.toHaveClass(/show/);
+  await page.locator('#people').scrollIntoViewIfNeeded();
+  await expect(page.locator('#nav')).toHaveClass(/show/);
+  await page.locator('#top').scrollIntoViewIfNeeded();
+  await expect(page.locator('#nav')).not.toHaveClass(/show/);
+});
+
 test('mobile menu and search open as large blurred layers with close controls', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'Mobile-only navigation behavior');
   await page.goto('/#people-all');

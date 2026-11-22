@@ -14,3 +14,6 @@
 
 ## 2026-11-22 — Logo fit
 - Reduced and aligned intro wordmark; added tightly cropped EJUST navigation mark and favicon.
+
+## 2026-11-22 — Requirements and interaction polish
+- Added confirmed production requirements, transparent navigation mark, rounded favicon, search auto-collapse, and intro navigation restoration.

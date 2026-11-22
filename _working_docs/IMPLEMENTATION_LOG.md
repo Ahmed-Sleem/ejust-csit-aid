@@ -32,3 +32,11 @@
 - Converted the supplied SVG text attachment into `ejust-mark.svg` and used it in the floating and mobile navigation instead of the favicon URL.
 - Cropped both the navigation mark and favicon viewBoxes tightly around the visible black/red emblem, removing excess transparent/white space so the artwork fills its available area.
 - Increased the floating emblem box to 38 px and visually verified its fit in the 52 px glass navigation.
+
+## 2026-11-22 — Confirmed production requirements and navigation polish
+- Created `docs/PRODUCT_REQUIREMENTS.md` covering the confirmed account, verification, role, profile, project, mention-count ranking, security, audit, privacy, operations, and launch requirements.
+- Modeled Admin as a privilege layered on Student/Professor, with a one-time preverified root-admin bootstrap that still completes normal account creation.
+- Explicitly excluded project workflow, project Status, notifications, likes, comments, chat, and social-feed complexity.
+- Removed the supplied white SVG container from the floating navigation emblem, leaving a transparent black/red mark.
+- Rebuilt the favicon as a smaller inset emblem on a rounded white tile.
+- Added elegant desktop search collapse on blur/outside click and automatic floating-navigation removal on return to the intro.

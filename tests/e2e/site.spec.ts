@@ -38,6 +38,24 @@ test('keeps koi limited to the intro and preserves site interactions', async ({ 
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
 });
 
+test('mobile menu and search open as large blurred layers with close controls', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Mobile-only navigation behavior');
+  await page.goto('/#people-all');
+  await page.getByRole('button', { name: 'Open menu' }).click();
+  const menu = page.locator('#mobile-menu');
+  await expect(menu).toHaveClass(/show/);
+  await expect(menu.getByRole('link', { name: 'Projects' })).toBeVisible();
+  await menu.getByRole('button', { name: 'Close menu' }).click();
+  await expect(menu).not.toHaveClass(/show/);
+  await page.getByRole('button', { name: 'Search', exact: true }).first().click();
+  const search = page.locator('#mobile-search');
+  await expect(search).toHaveClass(/show/);
+  await search.locator('#msin').fill('Nour');
+  await expect(search.getByRole('link', { name: /Nour Ahmed/ })).toBeVisible();
+  await search.getByRole('button', { name: 'Close search' }).click();
+  await expect(search).not.toHaveClass(/show/);
+});
+
 test('opens dedicated people and project directory pages', async ({ page }) => {
   await page.goto('/#people-all');
   await expect(page.locator('#directory')).toBeVisible();

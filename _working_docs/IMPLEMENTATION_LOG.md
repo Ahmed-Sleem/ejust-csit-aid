@@ -19,3 +19,10 @@
 - Added View all controls for People and Projects.
 - Added dedicated full People and Projects directory pages within the existing hash-routed site, preserving the same typography, spacing, cards, transitions, floating navigation, search, and project/profile interactions.
 - Added desktop/mobile directory and slider coverage and visually inspected both views.
+
+## 2026-11-22 — Mobile navigation and search
+- Replaced the hero wordmark asset with the user's tighter crop and reduced its maximum width to 290 px.
+- Added a three-dot control immediately before the search icon on screens up to 620 px.
+- Added a full-screen glass mobile menu with large Home, Projects, People, and Sign in actions, compact identity, background blur, scroll locking, and circular close control.
+- Added a matching full-screen mobile search experience with immediate people/project results and its own close control; desktop search remains unchanged.
+- Added Escape handling, focus handoff, and mobile-only browser coverage; visually inspected both overlays at 412×915.

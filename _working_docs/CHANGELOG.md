@@ -8,3 +8,6 @@
 
 ## 2026-11-22 — Directory pages
 - Added horizontal People slider, compact floating emblem, More controls, and dedicated People/Projects pages.
+
+## 2026-11-22 — Mobile overlays
+- Added full-screen glass mobile menu and search; tightened and reduced hero logo.

@@ -105,22 +105,35 @@ footer{max-width:1440px;margin:90px auto 0;padding:26px var(--pad) 40px;display:
 .x{position:absolute;top:16px;right:18px;font-size:18px;color:var(--ink3)}
 #toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,140px);background:var(--ink);color:#fff;padding:13px 22px;border-radius:99px;font-size:14px;transition:.5s cubic-bezier(.2,.8,.2,1);z-index:99}#toast.show{transform:translate(-50%,0)}
 .rv{opacity:0;transform:translateY(24px);transition:.8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+/* immersive mobile navigation and search */
+.mobile-menu-button{display:none;width:36px;height:36px;border-radius:8px;place-items:center;padding:10px}.mobile-menu-button span{display:block;width:3px;height:3px;border-radius:50%;background:currentColor;margin:2px auto}.mobile-layer{position:fixed;inset:0;z-index:120;display:grid;grid-template-rows:auto 1fr;padding:calc(18px + env(safe-area-inset-top,0px)) 18px calc(22px + env(safe-area-inset-bottom,0px));background:rgba(250,250,250,.78);backdrop-filter:blur(30px) saturate(150%);-webkit-backdrop-filter:blur(30px) saturate(150%);opacity:0;visibility:hidden;transform:scale(.985);transition:opacity .28s,transform .4s cubic-bezier(.2,.8,.2,1),visibility .28s}.mobile-layer.show{opacity:1;visibility:visible;transform:none}.mobile-layer-head{display:flex;align-items:center;justify-content:space-between;height:48px}.mobile-layer-head img{width:34px;height:34px}.mobile-close{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.82);box-shadow:0 0 0 1px rgba(0,0,0,.07);font-size:18px;display:grid;place-items:center}.mobile-menu-content{align-self:center;padding:20px 4px 9vh}.mobile-menu-content nav{display:flex;flex-direction:column}.mobile-menu-content nav a{font-size:clamp(42px,14vw,72px);font-weight:700;line-height:1.08;letter-spacing:-.06em;padding:7px 0;border-bottom:1px solid rgba(0,0,0,.08)}.mobile-menu-content nav a:hover{color:var(--accent)}.mobile-menu-foot{display:flex;justify-content:space-between;align-items:center;margin-top:28px;color:var(--ink2);font-size:13px}.mobile-search-content{align-self:start;width:100%;padding-top:8vh}.mobile-search-title{font-size:clamp(38px,12vw,62px);letter-spacing:-.06em;margin-bottom:26px}.mobile-search-box{height:62px;display:flex;align-items:center;gap:12px;border-radius:16px;background:rgba(255,255,255,.88);box-shadow:0 0 0 1px rgba(0,0,0,.07),0 18px 50px -30px rgba(0,0,0,.28);padding:0 18px}.mobile-search-box input{width:100%;min-width:0;outline:0;font-size:17px}.mobile-results{margin-top:12px;display:grid;gap:4px}.mobile-results a{display:flex;justify-content:space-between;gap:12px;padding:15px 16px;border-radius:13px;background:rgba(255,255,255,.5);font-size:15px;font-weight:600}.mobile-results a:hover{background:#fff}.mobile-results small{color:var(--ink3);font-weight:400;text-align:right}
+@media(max-width:620px){.mobile-menu-button{display:grid}.sb.open{width:36px;background:transparent}.sb input,#res{display:none!important}#nav{padding-left:12px}.mobile-layer{display:grid}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
 /* EJUST identity and koi intro */
 .hero{position:relative;isolation:isolate;overflow:hidden}
 .hero-koi{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .hero>.top,.hero>.bottom{position:relative;z-index:2}
-.hero-logo{display:block;width:clamp(230px,30vw,380px);height:auto;filter:contrast(1.08)}
+.hero-logo{display:block;width:clamp(190px,23vw,290px);height:auto;filter:contrast(1.08)}
 .nav-logo{display:block;width:30px;height:30px;object-fit:contain}
 #nav .lg{display:flex;align-items:center}
-@media(max-width:760px){.hero-logo{width:min(72vw,310px)}.nav-logo{width:28px;height:28px}.hero{padding-top:calc(16px + env(safe-area-inset-top,0px))}}
+@media(max-width:760px){.hero-logo{width:min(58vw,230px)}.nav-logo{width:28px;height:28px}.hero{padding-top:calc(16px + env(safe-area-inset-top,0px))}}
 </style></head><body>
 
 <div id="nav"><a class="lg" href="#top"><img class="nav-logo" src="./favicon.svg" alt="EJUST"></a>
 <a class="lk" href="#projects">Projects</a><a class="lk" href="#people">People</a>
+<button class="mobile-menu-button" type="button" aria-label="Open menu" onclick="openMobileMenu()"><span></span><span></span><span></span></button>
 <div class="sb" id="sb"><button id="sbtn" aria-label="Search"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><input id="sin" placeholder="Search people &amp; projects" autocomplete="off"><div id="res"></div></div>
 <button class="pill" onclick="auth()">Sign in</button></div>
+
+<div class="mobile-layer" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+ <div class="mobile-layer-head"><img src="./favicon.svg" alt="EJUST"><button class="mobile-close" type="button" onclick="closeMobileLayers()" aria-label="Close menu">✕</button></div>
+ <div class="mobile-menu-content"><nav><a href="#top" onclick="closeMobileLayers()">Home</a><a href="#projects-all" onclick="closeMobileLayers()">Projects</a><a href="#people-all" onclick="closeMobileLayers()">People</a><button onclick="closeMobileLayers();auth()" style="text-align:left;font-size:clamp(42px,14vw,72px);font-weight:700;line-height:1.08;letter-spacing:-.06em;padding:7px 0">Sign in</button></nav><div class="mobile-menu-foot"><span>AI &amp; Data Science · CSIT</span><span>EJUST</span></div></div>
+</div>
+<div class="mobile-layer" id="mobile-search" role="dialog" aria-modal="true" aria-label="Search">
+ <div class="mobile-layer-head"><img src="./favicon.svg" alt="EJUST"><button class="mobile-close" type="button" onclick="closeMobileLayers()" aria-label="Close search">✕</button></div>
+ <div class="mobile-search-content"><h2 class="mobile-search-title">Search<span class="dot">.</span></h2><div class="mobile-search-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="msin" placeholder="People and projects" autocomplete="off"></div><div class="mobile-results" id="mres"></div></div>
+</div>
 
 <div id="home">
 <header class="hero" id="top">
@@ -197,18 +210,21 @@ function route(){const h=location.hash.slice(1),p=P.find(x=>x.id==h),isDirectory
  navState();rv()}
 function navState(){const inside=$("#prof").style.display==="block"||$("#directory").style.display==="block";$("#nav").classList.toggle("show",inside||scrollY>innerHeight*.55||$("#sb").classList.contains("open"))}
 addEventListener("hashchange",route);addEventListener("scroll",()=>{navState();spy()},{passive:true});
-/* search */
-const sb=$("#sb"),sin=$("#sin"),res=$("#res");
+/* desktop search + immersive mobile layers */
+const sb=$("#sb"),sin=$("#sin"),res=$("#res"),msin=$("#msin"),mres=$("#mres"),mobileMenu=$("#mobile-menu"),mobileSearch=$("#mobile-search");
+function lockMobileLayer(lock){document.body.style.overflow=lock?"hidden":""}
+function closeMobileLayers(){mobileMenu.classList.remove("show");mobileSearch.classList.remove("show");msin.value="";lockMobileLayer(false)}
+function openMobileMenu(){closeS();mobileMenu.classList.add("show");lockMobileLayer(true)}
 function closeS(){sb.classList.remove("open");res.classList.remove("show");sin.value="";navState()}
-function openSearch(){$("#nav").classList.add("show");sb.classList.add("open");setTimeout(()=>sin.focus(),250);q("")}
-$("#sbtn").onclick=()=>sb.classList.contains("open")?closeS():openSearch();
-function q(v){v=v.toLowerCase();const m=[...P.map(p=>[p.n,p.r+" · "+p.f,p.id,(p.n+p.f+p.r).toLowerCase()]),...J.map(j=>[j[0],"Project · "+j[3],"projects",(j[0]+j[1]+j[2]).toLowerCase()])].filter(x=>x[3].includes(v)).slice(0,6);res.innerHTML=m.length?m.map(x=>`<a href="#${x[2]}" onclick="closeS()">${x[0]}<small>${x[1]}</small></a>`).join(""):`<p style="padding:12px;color:var(--ink3);font-size:14px">No results</p>`;res.classList.add("show")}
-sin.oninput=()=>q(sin.value);
+function openSearch(){if(matchMedia("(max-width:620px)").matches){mobileMenu.classList.remove("show");mobileSearch.classList.add("show");lockMobileLayer(true);q("");setTimeout(()=>msin.focus(),220);return}$("#nav").classList.add("show");sb.classList.add("open");setTimeout(()=>sin.focus(),250);q("")}
+$("#sbtn").onclick=()=>matchMedia("(max-width:620px)").matches?openSearch():sb.classList.contains("open")?closeS():openSearch();
+function q(v){v=v.toLowerCase();const m=[...P.map(p=>[p.n,p.r+" · "+p.f,p.id,(p.n+p.f+p.r).toLowerCase()]),...J.map(j=>[j[0],"Project · "+j[3],"projects",(j[0]+j[1]+j[2]).toLowerCase()])].filter(x=>x[3].includes(v)).slice(0,6),empty=`<p style="padding:12px;color:var(--ink3);font-size:14px">No results</p>`;res.innerHTML=m.length?m.map(x=>`<a href="#${x[2]}" onclick="closeS()">${x[0]}<small>${x[1]}</small></a>`).join(""):empty;mres.innerHTML=m.length?m.map(x=>`<a href="#${x[2]}" onclick="closeMobileLayers()">${x[0]}<small>${x[1]}</small></a>`).join(""):empty;res.classList.add("show")}
+sin.oninput=()=>q(sin.value);msin.oninput=()=>q(msin.value);
 /* auth */
 let su=false;
 function auth(){$("#am").classList.add("show")}function closeM(){$("#am").classList.remove("show")}
 $("#am").onclick=e=>{if(e.target==$("#am"))closeM()};
-addEventListener("keydown",e=>{if(e.key=="Escape"){closeM();closeS();closeJ()}});
+addEventListener("keydown",e=>{if(e.key=="Escape"){closeM();closeS();closeMobileLayers();closeJ()}});
 function tg(){su=!su;$("#nm").style.display=su?"block":"none";$("#at").textContent=su?"Create account":"Sign in";$("#go").textContent=su?"Create account":"Sign in";$("#sw").textContent=su?"Have an account?":"No account?";$("#sl").textContent=su?"Sign in":"Create one"}
 $$("#seg button").forEach(b=>b.onclick=()=>{$$("#seg button").forEach(x=>x.classList.remove("on"));b.classList.add("on")});
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),2400)}

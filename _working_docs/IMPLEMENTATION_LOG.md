@@ -12,3 +12,10 @@
 - Reduced hero logo from 360 px maximum to 250 px and floating logo to 120 px.
 - Replaced the favicon with the supplied EJUST emblem SVG.
 - Reverified desktop/mobile behavior and visually inspected the revised hero.
+
+## 2026-11-22 — Directory navigation and people slider
+- Restored the large full EJUST wordmark in the intro and switched the floating navigation to the compact supplied emblem.
+- Converted the homepage People section to a horizontal snap slider with filter options and a terminal Explore card containing View everyone and Search actions.
+- Added View all controls for People and Projects.
+- Added dedicated full People and Projects directory pages within the existing hash-routed site, preserving the same typography, spacing, cards, transitions, floating navigation, search, and project/profile interactions.
+- Added desktop/mobile directory and slider coverage and visually inspected both views.

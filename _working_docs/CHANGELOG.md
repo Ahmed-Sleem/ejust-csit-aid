@@ -5,3 +5,6 @@
 
 ## 2026-11-22 — Refined intro scale
 - Reduced koi and logo sizing; installed supplied EJUST favicon.
+
+## 2026-11-22 — Directory pages
+- Added horizontal People slider, compact floating emblem, More controls, and dedicated People/Projects pages.

@@ -7,6 +7,7 @@ test('integrates the EJUST identity and configured koi intro', async ({ page }) 
   await page.goto('/');
   await expect(page.locator('.hero-logo')).toBeVisible();
   await expect(page.locator('.hero-logo')).toHaveAttribute('src', './ejust-logo.png');
+  await expect(page.locator('.nav-logo')).toHaveAttribute('src', './favicon.svg');
   const canvas = page.locator('#hero-koi');
   await expect(canvas).toBeVisible();
   await expect(canvas).toHaveAttribute('data-preset', 'koi-tiles');
@@ -33,5 +34,17 @@ test('keeps koi limited to the intro and preserves site interactions', async ({ 
   await page.locator('#people').scrollIntoViewIfNeeded();
   await page.getByRole('button', { name: 'Students' }).click();
   await expect(page.locator('#plist .hc')).toHaveCount(2);
+  await expect(page.locator('#plist .more-card')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+});
+
+test('opens dedicated people and project directory pages', async ({ page }) => {
+  await page.goto('/#people-all');
+  await expect(page.locator('#directory')).toBeVisible();
+  await expect(page.locator('#directory h2')).toHaveText('People');
+  await expect(page.locator('#directory .hc')).toHaveCount(4);
+  await page.goto('/#projects-all');
+  await expect(page.locator('#directory h2')).toHaveText('Projects');
+  await expect(page.locator('#directory .pc')).toHaveCount(5);
+  await expect(page.locator('#home')).toBeHidden();
 });

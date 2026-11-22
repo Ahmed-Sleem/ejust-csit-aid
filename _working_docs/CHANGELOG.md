@@ -2,3 +2,6 @@
 
 ## 2026-11-22
 - Added EJUST branding and three-fish Koi Tiles intro to the supplied department site.
+
+## 2026-11-22 — Refined intro scale
+- Reduced koi and logo sizing; installed supplied EJUST favicon.

@@ -38,9 +38,10 @@ function resize(): void {
   width = Math.max(1, bounds.width); height = Math.max(1, bounds.height);
   setCanvasSize(width, height);
   school.resize(width / Math.max(1, oldWidth), height / Math.max(1, oldHeight));
-  // Each koi is approximately 12% of the intro width, with practical caps
-  // supplied by School so mobile and ultrawide layouts remain usable.
-  school.setFishScale((width * .12) / 65);
+  // Translate the requested 12% setting to Cursor Pond's visual scale rather
+  // than 12% of this much wider hero. This keeps desktop koi at the demo's
+  // original 58–72 px length and scales them down gently on narrow screens.
+  school.setFishScale(Math.max(.72, Math.min(1, width / 1200)));
   renderer.resize(width, height, Math.min(devicePixelRatio || 1, 2));
   if (!positioned) positionIntroKoi();
 }

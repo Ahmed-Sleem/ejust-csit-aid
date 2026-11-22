@@ -11,3 +11,6 @@
 
 ## 2026-11-22 — Mobile overlays
 - Added full-screen glass mobile menu and search; tightened and reduced hero logo.
+
+## 2026-11-22 — Logo fit
+- Reduced and aligned intro wordmark; added tightly cropped EJUST navigation mark and favicon.

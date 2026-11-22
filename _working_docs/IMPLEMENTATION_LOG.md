@@ -26,3 +26,9 @@
 - Added a full-screen glass mobile menu with large Home, Projects, People, and Sign in actions, compact identity, background blur, scroll locking, and circular close control.
 - Added a matching full-screen mobile search experience with immediate people/project results and its own close control; desktop search remains unchanged.
 - Added Escape handling, focus handoff, and mobile-only browser coverage; visually inspected both overlays at 412×915.
+
+## 2026-11-22 — Logo and emblem fit
+- Reduced the intro wordmark by approximately 60% to a 120 px maximum and vertically aligned it with Projects, People, Search, and Sign in.
+- Converted the supplied SVG text attachment into `ejust-mark.svg` and used it in the floating and mobile navigation instead of the favicon URL.
+- Cropped both the navigation mark and favicon viewBoxes tightly around the visible black/red emblem, removing excess transparent/white space so the artwork fills its available area.
+- Increased the floating emblem box to 38 px and visually verified its fit in the 52 px glass navigation.

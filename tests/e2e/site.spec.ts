@@ -7,7 +7,7 @@ test('integrates the EJUST identity and configured koi intro', async ({ page }) 
   await page.goto('/');
   await expect(page.locator('.hero-logo')).toBeVisible();
   await expect(page.locator('.hero-logo')).toHaveAttribute('src', './ejust-logo.png');
-  await expect(page.locator('.nav-logo')).toHaveAttribute('src', './favicon.svg');
+  await expect(page.locator('.nav-logo')).toHaveAttribute('src', './ejust-mark.svg');
   const canvas = page.locator('#hero-koi');
   await expect(canvas).toBeVisible();
   await expect(canvas).toHaveAttribute('data-preset', 'koi-tiles');

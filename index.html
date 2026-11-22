@@ -182,21 +182,16 @@ f.innerHTML=`<div class="pfc"><button class="bk" onclick="closeJ()">← All proj
 f.scrollTop=0;Object.assign(f.style,{top:r.top+"px",left:r.left+"px",width:r.width+"px",height:r.height+"px"});f.classList.add("show");f.offsetWidth;f.classList.add("full");Object.assign(f.style,{top:"0px",left:"0px",width:"100%",height:"100%"});document.body.style.overflow="hidden"}
 function closeJ(q){const f=$("#pf");if(!f.classList.contains("full"))return;f.classList.remove("full");document.body.style.overflow="";if(q){f.classList.remove("show");return}const r=cur.getBoundingClientRect();Object.assign(f.style,{top:r.top+"px",left:r.left+"px",width:r.width+"px",height:r.height+"px"});setTimeout(()=>f.classList.remove("show"),850)}
 /* profile */
-const sec=["About","News","Publications","Projects","Talks","Education","Awards","Message"];
+const sec=["About","Publications","Projects","Contact"];
 const L=(a,f)=>a.length?a.map(f).join(""):`<p style="color:var(--ink3);font-size:15px">Nothing here yet.</p>`;
 const it=(t,b,s)=>`<div class="it"><time>${t||""}</time><div><b>${b}</b>${s?`<span>${s}</span>`:""}</div></div>`;
 function profile(p){$("#prof").innerHTML=`<a class="back" href="#people">← All people</a>
-<div class="ph"><div class="av">${ini(p.n)}</div><div style="flex:1;min-width:260px"><h1>${p.n}</h1><p>${p.t}<br>Egypt-Japan University of Science and Technology · ${p.e}</p>
-<div class="bt"><button class="pill" onclick="go('Message')">Send message</button><button class="pill o" onclick="toast('Contact card copied')">Contact information</button><button class="pill o" onclick="toast('Resume download goes here')">Download resume</button></div></div></div>
+<div class="ph"><div class="av">${ini(p.n)}</div><div style="flex:1;min-width:260px"><h1>${p.n}</h1><p>${p.t}<br>Egypt-Japan University of Science and Technology · ${p.e}</p></div></div>
 <div class="pg"><div class="side">${sec.map((s,i)=>`<button class="${i?"":"on"}" onclick="go('${s}')">${s}</button>`).join("")}</div><div>
 <div class="ps" id="s-About"><h3>About</h3><p>${p.about}</p></div>
-<div class="ps" id="s-News"><h3>News</h3>${L(p.news,x=>it(x[0],x[1]))}</div>
 <div class="ps" id="s-Publications"><h3>Publications</h3>${L(p.pub,x=>it(x[0],x[1],x[2]))}</div>
 <div class="ps" id="s-Projects"><h3>Projects</h3>${L(p.proj,x=>{const j=J.find(j=>j[0]==x);return it(j[3],j[0],j[1])})}</div>
-<div class="ps" id="s-Talks"><h3>Talks</h3>${L(p.talks,x=>it(x[0],x[1]))}</div>
-<div class="ps" id="s-Education"><h3>Education</h3>${L(p.edu,x=>it(x[0],x[1]))}</div>
-<div class="ps" id="s-Awards"><h3>Awards and honors</h3>${L(p.aw,x=>it(x[0],x[1]))}</div>
-<div class="ps" id="s-Message"><h3>Leave a message</h3><div class="fm"><input placeholder="Your name"><input placeholder="Email"><textarea rows="4" placeholder="Message"></textarea><button class="pill" style="width:fit-content;height:44px;padding:0 24px" onclick="toast('Message sent (demo)')">Send</button></div></div>
+<div class="ps" id="s-Contact"><h3>Contact information</h3>${it("Email",`<a href="mailto:${p.e}">${p.e}</a>`)}${it("Department","AI & Data Science","CSIT · Egypt-Japan University of Science and Technology")}${it("Academic role",p.r,p.f)}</div>
 </div></div>`}
 function go(s){document.getElementById("s-"+s).scrollIntoView({behavior:"smooth"})}
 function spy(){if($("#prof").style.display!="block")return;let c=sec[0];sec.forEach(s=>{const e=$("#s-"+s);if(e&&e.getBoundingClientRect().top<180)c=s});$$(".side button").forEach(b=>b.classList.toggle("on",b.textContent==c))}

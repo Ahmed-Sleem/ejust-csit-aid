@@ -17,3 +17,6 @@
 
 ## 2026-11-22 — Requirements and interaction polish
 - Added confirmed production requirements, transparent navigation mark, rounded favicon, search auto-collapse, and intro navigation restoration.
+
+## 2026-11-22 — Simplified profiles
+- Removed messaging/resume actions and nonessential profile sections; added Contact Information.

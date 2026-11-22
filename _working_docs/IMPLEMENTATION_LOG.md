@@ -40,3 +40,10 @@
 - Removed the supplied white SVG container from the floating navigation emblem, leaving a transparent black/red mark.
 - Rebuilt the favicon as a smaller inset emblem on a rounded white tile.
 - Added elegant desktop search collapse on blur/outside click and automatic floating-navigation removal on return to the intro.
+
+## 2026-11-22 — Web-only scope and simplified profiles
+- Declared the product website-only: no native mobile, desktop, Electron, or separate installable app.
+- Removed profile actions for Send message, Contact information card, and Download resume.
+- Reduced profiles to About, Publications, Projects, and Contact Information.
+- Added a structured Contact Information section containing EJUST email, department, academic role, and field.
+- Updated product requirements and added desktop/mobile browser coverage.

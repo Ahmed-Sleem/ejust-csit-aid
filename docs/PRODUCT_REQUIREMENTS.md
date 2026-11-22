@@ -1,7 +1,9 @@
 # EJUST CSIT AI & Data Science — Product Requirements
 
 **Status:** Confirmed scope  
-**Purpose:** Turn the current static department website into a secure, maintainable platform for EJUST people and projects without changing its established visual language.
+**Purpose:** Turn the current static department website into a secure, maintainable web platform for EJUST people and projects without changing its established visual language.
+
+**Platform boundary:** This product is a responsive website only. There will be no native mobile app, desktop app, Electron app, or installable app project.
 
 ## 1. Product goals
 
@@ -91,11 +93,8 @@ Profile fields:
 - Biography
 - Research interests
 - Skills
-- Education
 - Publications
-- Awards and honors
-- Talks
-- Public contact links
+- Contact information and public contact links
 - EJUST email visibility preference
 - Projects associated with the person
 - `project_count`: computed number of published projects mentioning that person
@@ -104,6 +103,8 @@ Rules:
 
 - Academic role and verification state are admin-managed fields.
 - Users cannot grant themselves professor or admin access.
+- Public profile pages use only About, Publications, Projects, and Contact Information sections.
+- Profiles do not include Send message, Contact card, Download resume, News, Talks, Education, Awards, or Message actions/sections.
 - Public profile pages keep the current site design.
 - The homepage People section ranks verified people by `project_count` descending; ties use a stable editorial/alphabetical order.
 - Search includes verified public profiles only.

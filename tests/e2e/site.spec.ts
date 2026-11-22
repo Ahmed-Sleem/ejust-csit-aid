@@ -70,6 +70,14 @@ test('mobile menu and search open as large blurred layers with close controls', 
   await expect(search).not.toHaveClass(/show/);
 });
 
+test('profile keeps only the simplified information sections', async ({ page }) => {
+  await page.goto('/#amira-hassan');
+  await expect(page.locator('.side button')).toHaveText(['About', 'Publications', 'Projects', 'Contact']);
+  await expect(page.locator('#s-Contact')).toContainText('amira.hassan@ejust.edu.eg');
+  await expect(page.getByRole('button', { name: /Send message|Download resume|Contact information/ })).toHaveCount(0);
+  await expect(page.locator('#s-News,#s-Talks,#s-Education,#s-Awards,#s-Message')).toHaveCount(0);
+});
+
 test('opens dedicated people and project directory pages', async ({ page }) => {
   await page.goto('/#people-all');
   await expect(page.locator('#directory')).toBeVisible();

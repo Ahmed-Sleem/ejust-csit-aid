@@ -52,3 +52,10 @@
 - Added `docs/IMPLEMENTATION_AND_DEPLOYMENT_PLAN.md` covering architecture, accounts, repository structure, schema, constraints, RLS matrix, auth and root bootstrap, trusted functions, storage, frontend modules, secrets, testing, CI, Cloudflare/Neon setup, milestones, backup, rollback, monitoring, launch acceptance, and credential handling.
 - Based the security plan on Neon Data API grants/RLS, Managed Better Auth JWT identity, Data API advisors, branch-scoped function secrets, and Cloudflare Pages deployment controls.
 - Explicitly deferred cloud account creation until local refactor/schema milestones are complete.
+
+## 2026-11-21 — Backend step 1: PostgreSQL foundation
+- Added immutable ordered migrations for extensions/enums, all core application entities, relational integrity, validation constraints, indexes, timestamp triggers, and append-only audit enforcement.
+- Added a transactional Node/PostgreSQL migration runner with SHA-256 checksums and a database advisory lock; it rejects modified applied migrations and requires a direct `DATABASE_URL`.
+- Added disposable real-PostgreSQL database tests covering fresh migration, repeat execution, EJUST-domain rejection, normalized-email enforcement, single-root enforcement, HTTPS URL checks, upload restrictions, audit immutability, and timestamp updates.
+- Added `docs/DATA_MODEL.md`, package commands, dependency auditing, and database tests to local verification and GitHub deployment gates.
+- Validation: database tests passed twice, dependency audit found zero vulnerabilities, existing unit/build/E2E verification passed (2 unit; 10 applicable E2E; 2 intentional platform skips), diff/secret checks clean.

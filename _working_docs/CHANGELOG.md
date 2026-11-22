@@ -23,3 +23,6 @@
 
 ## 2026-11-22 — Delivery blueprint
 - Added complete implementation, testing, and deployment plan for Cloudflare Pages + Neon.
+
+## 2026-11-21 — PostgreSQL backend foundation
+- Added production-oriented schema migrations, integrity constraints, migration tooling, database tests, and CI enforcement.
